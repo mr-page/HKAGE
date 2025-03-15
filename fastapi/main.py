@@ -1,15 +1,17 @@
-from typing import Union
+from typing import Optional
 
 from fastapi import FastAPI
 
-app = FastAPI()
+app = FastAPI() # 建立一個 Fast API application
 
-
-@app.get("/")
+@app.get("/12l/") # 指定 api 路徑 (get方法)
 def read_root():
-    return {"Hello": "World"}
+    print("sd")
+    return {"Hello": "Worgsdgsgggdsdgdgld"}
 
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}
+
+
+@app.get("/users/{user_id}")
+def read_user(user_id: int):
+    return {"user_id": user_id}
