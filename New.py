@@ -33,6 +33,3 @@ def confirmation(Text):
     return response['message']['content']
 
 print(confirmation(''))
-
-
-print('Hello')
