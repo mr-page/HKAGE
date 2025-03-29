@@ -1,79 +1,60 @@
-# from fastapi import FastAPI,Query
-# from pydantic import  BaseModel
-# import uvicorn
-#
-# app = FastAPI()
-#
+from fastapi import FastAPI, Depends, HTTPException, status
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from jose import JWTError, jwt
+from passlib.context import CryptContext
+from datetime import datetime, timedelta
 
-
-
-
-from fastapi import FastAPI, HTTPException, Depends, status
-from fastapi.security import HTTPBasic, HTTPBasicCredentials
-from typing import Annotated
+# Configuration
+SECRET_KEY = "your-secret-key-here"
+ALGORITHM = "HS256"
+ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
 app = FastAPI()
-security = HTTPBasic()
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
-# Mock user database (in a real app, use a proper database with hashed passwords)
+# Mock user database with hashed passwords
 fake_users_db = {
     "user1": {
         "username": "user1",
-        "password": "password1",
-        "full_name": "User One",
+        "hashed_password": pwd_context.hash("password1"),
         "role": "admin"
-    },
-    "user2": {
-        "username": "user2",
-        "password": "password2",
-        "full_name": "User Two",
-        "role": "user"
     }
 }
 
 
-def authenticate_user(username: str, password: str):
-    user = fake_users_db.get(username)
-    if not user or user["password"] != password:
-        return False
-    return user
+def create_access_token(data: dict, expires_delta: timedelta):
+    to_encode = data.copy()
+    expire = datetime.utcnow() + expires_delta
+    to_encode.update({"exp": expire})
+    return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
 
 
-# @app.get("/")
-# async def root():
-#     return {"message": "Welcome to the authentication API"}
+@app.post("/token")
+async def login(form_data: OAuth2PasswordRequestForm = Depends()):
+    user = fake_users_db.get(form_data.username)
+    if not user or not pwd_context.verify(form_data.password, user["hashed_password"]):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect username or password"
+        )
+
+    access_token = create_access_token(
+        data={"sub": user["username"]},
+        expires_delta=timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    )
+
+    return {"access_token": access_token, "token_type": "bearer"}
 
 
 @app.get("/protected")
-async def protected_route(credentials: Annotated[HTTPBasicCredentials, Depends(security)]):
-    user = authenticate_user(credentials.username, credentials.password)
-    if not user:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Incorrect username or password",
-            headers={"WWW-Authenticate": "Basic"},
-        )
+async def protected_route(token: str = Depends(oauth2_scheme)):
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        username = payload.get("sub")
+        if not username:
+            raise HTTPException(status_code=401, detail="Invalid token")
+    except JWTError:
+        raise HTTPException(status_code=401, detail="Invalid token")
 
-    return {
-        "message": f"Hello {user['full_name']}!",
-        "user_details": {
-            "username": user["username"],
-            "role": user["role"]
-        }
-    }
-
-
-@app.get("/greet")
-async def greet_user(credentials: Annotated[HTTPBasicCredentials, Depends(security)]):
-    user = authenticate_user(credentials.username, credentials.password)
-    if not user:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Incorrect username or password",
-            headers={"WWW-Authenticate": "Basic"},
-        )
-
-    if user["role"] == "admin":
-        return {"message": f"Welcome back, Administrator {user['full_name']}!"}
-    else:
-        return {"message": f"Hello {user['full_name']}, nice to see you again!"}
+    return {"message": "Access granted", "user": username}
