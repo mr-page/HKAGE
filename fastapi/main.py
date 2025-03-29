@@ -63,3 +63,25 @@ async def protected_route(token: str = Depends(oauth2_scheme)):
         raise HTTPException(status_code=401, detail="Invalid token")
 
     return {"message": "Access granted", "user": username}
+
+
+# Sample dictionary data
+database = {}
+
+
+@app.get("/data")
+async def get_data(token: str = Depends(oauth2_scheme)):
+    try:
+        # Verify token (reuse existing JWT validation)
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        username = payload.get("sub")
+        if not username:
+            raise HTTPException(status_code=401, detail="Invalid token")
+    except JWTError:
+        raise HTTPException(status_code=401, detail="Invalid token")
+
+    return {
+        "message": "Data retrieved successfully",
+        "user": username,
+        "data": database  # Return your dictionary here
+    }
