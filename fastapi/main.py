@@ -39,9 +39,9 @@ def authenticate_user(username: str, password: str):
     return user
 
 
-@app.get("/")
-async def root():
-    return {"message": "Welcome to the authentication API"}
+# @app.get("/")
+# async def root():
+#     return {"message": "Welcome to the authentication API"}
 
 
 @app.get("/protected")
