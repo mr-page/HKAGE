@@ -19,6 +19,16 @@ fake_users_db = {
         "username": "user1",
         "hashed_password": pwd_context.hash("password1"),
         "role": "admin"
+    },
+"user2": {
+        "username": "user2",
+        "hashed_password": pwd_context.hash("password2"),
+        "role": "admin"
+    },
+"E1": {
+        "username": "E1",
+        "hashed_password": pwd_context.hash("pw1"),
+        "role": "admin"
     }
 }
 
@@ -28,6 +38,8 @@ def create_access_token(data: dict, expires_delta: timedelta):
     expire = datetime.utcnow() + expires_delta
     to_encode.update({"exp": expire})
     return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+
+@app.get("/test")
 
 
 @app.post("/token")
@@ -58,3 +70,36 @@ async def protected_route(token: str = Depends(oauth2_scheme)):
         raise HTTPException(status_code=401, detail="Invalid token")
 
     return {"message": "Access granted", "user": username}
+
+
+# Sample dictionary data
+sample_data = {
+    "fruit": "apple",
+    "color": "red",
+    "price": 1.99,
+    "in_stock": True
+}
+
+
+
+
+
+
+
+@app.get("/data")
+async def get_data(token: str = Depends(oauth2_scheme)):
+    try:
+        # Verify token (reuse existing JWT validation)
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        username = payload.get("sub")
+        if not username:
+            raise HTTPException(status_code=401, detail="Invalid token")
+    except JWTError:
+        raise HTTPException(status_code=401, detail="Invalid token")
+
+    return {
+        "message": "Data retrieved successfully",
+        "user": username,
+        "data": sample_data  # Return your dictionary here
+    }
+
