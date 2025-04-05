@@ -7,7 +7,7 @@ access_token = response.json()['access_token']
 
 # Access protected endpoint
 protected_response = requests.get(
-    "http://localhost:8000/protected",
+    "https://instantly-beloved-griffon.ngrok-free.app/protected",
     headers={"Authorization": f"Bearer {access_token}"}
 )
 print(protected_response.json())
