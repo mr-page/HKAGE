@@ -5,4 +5,9 @@ print(response.json()['access_token'])
 access_token = response.json()['access_token']
 
 
-data = {}
+# Access protected endpoint
+protected_response = requests.get(
+    "http://localhost:8000/protected",
+    headers={"Authorization": f"Bearer {access_token}"}
+)
+print(protected_response.json())
