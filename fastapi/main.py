@@ -81,6 +81,22 @@ sample_data = {
 }
 
 
+
+DB = {
+    'patient1':{'3600':['Location','comment'],
+                '7200':['Location','comment'],
+
+
+    },
+    'patient2':{'3600':['Location','comment'],
+                '7200':['Location','comment'],
+
+
+    },
+}
+
+
+
 @app.get("/data")
 async def get_data(token: str = Depends(oauth2_scheme)):
     try:
