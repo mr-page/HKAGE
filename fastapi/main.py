@@ -34,6 +34,8 @@ def create_access_token(data: dict, expires_delta: timedelta):
     to_encode.update({"exp": expire})
     return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
 
+@app.get("/test")
+
 
 @app.post("/token")
 async def login(form_data: OAuth2PasswordRequestForm = Depends()):
@@ -66,7 +68,12 @@ async def protected_route(token: str = Depends(oauth2_scheme)):
 
 
 # Sample dictionary data
-database = {}
+sample_data = {
+    "fruit": "apple",
+    "color": "red",
+    "price": 1.99,
+    "in_stock": True
+}
 
 
 @app.get("/data")
@@ -83,5 +90,6 @@ async def get_data(token: str = Depends(oauth2_scheme)):
     return {
         "message": "Data retrieved successfully",
         "user": username,
-        "data": database  # Return your dictionary here
+        "data": sample_data  # Return your dictionary here
     }
+
