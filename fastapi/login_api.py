@@ -13,5 +13,5 @@ protected_response = requests.get(
 print(protected_response.json())
 
 
-response = requests.get("http://localhost:8000/data", headers={"Authorization": f"Bearer {access_token}"})
+response = requests.get("https://instantly-beloved-griffon.ngrok-free.app/data", headers={"Authorization": f"Bearer {access_token}"})
 print(response.json())
