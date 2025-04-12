@@ -6,25 +6,23 @@ from datetime import  datetime
 tstamp = datetime.strptime('3:59',
                   '%H:%M')
 
-Orderliness={
-    'patient1':1,
-    'patient2':2,
-}
+Orderliness=[
+    'patient1',
+    'patient2',
+]
 
 
 Db  = [
     {
     'patient1':{'1:00':['Location','11'],
                 '2:00':['Location','12'],
-
-
-    }
+                }
     },
-        {
+    {
     'patient2':{'1:00':['Location','21'],
                 '2:00':['Location','22'],
+                }
     }
-        }
 ]
 
 # # Create the pandas DataFrame
@@ -38,9 +36,10 @@ Db  = [
 
 def time_resort(orderliness,db):
     temp_db = []
-    for patient in db:
-        for event in patient.values():
-            temp_db.append([patient.values(),event])
+    for patient in orderliness:
+        for Val in db[patient]:
+            temp_db.append(patient)
+            temp_db.append((Val))
     return temp_db
 print(time_resort(Orderliness,Db))
 print(time_resort(Orderliness,Db)[0])
