@@ -14,15 +14,15 @@ Orderliness={
 
 Db  = [
     {
-    'patient1':{'1:00':['Location','comment'],
-                '2:00':['Location','comment'],
+    'patient1':{'1:00':['Location','11'],
+                '2:00':['Location','12'],
 
 
     }
     },
         {
-    'patient2':{'1:00':['Location','comment'],
-                '2:00':['Location','comment'],
+    'patient2':{'1:00':['Location','21'],
+                '2:00':['Location','22'],
     }
         }
 ]
