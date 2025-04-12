@@ -40,7 +40,8 @@ def create_access_token(data: dict, expires_delta: timedelta):
     return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
 
 @app.get("/test")
-
+async def test():
+    return  'hi'
 
 @app.post("/token")
 async def login(form_data: OAuth2PasswordRequestForm = Depends()):

@@ -1,24 +1,15 @@
+# Use AI to reconfirm
+
 from ollama import chat
 from ollama import ChatResponse
 
 Text = []
 
 
-# response: ChatResponse = chat(model='gemma2:2b', messages=[
-# {
-#     'role': 'system',
-#     'content': ''
-#   },
-#     {
-#
-#       "role": "user",
-#       "content": ""
-#     }
-#   ])
 
 # print(response['message']['content'])
 
-def confirmation(Text):
+def confirmation(text):
     response: ChatResponse = chat(model='gemma2:2b', messages=[
         {
             'role': 'system',
@@ -27,7 +18,7 @@ def confirmation(Text):
         {
 
             "role": "user",
-            "content": Text
+            "content": text
         }
     ])
     return response['message']['content']
