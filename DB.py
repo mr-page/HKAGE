@@ -24,8 +24,52 @@ Db  =  {
 #hour = print(assignment[0].split(':')[0])
 #minute = print(assignment[0].split(':')[1])
 arrangement = []
+re_arrangement = []
+pa_na = []
+pa_task = []
+for patients in Db:
+   pa_na.append(patients)
 for assignments in Db.values():
-   for assignment in assignments:
+   pa_task.append(assignments)
+num1 = 0
+num2 = 0
+while num1 < len(Db):
+   num2 = 0
+   while num2 < len(pa_task[num1]):
+    pa_task[num1][num2].insert(1,pa_na[num1])
+    num2 += 1
+   num1 += 1
+for task_list in pa_task:
+   for task in task_list:
+      arrangement.append(task)
+for item in arrangement:
+   hour = (item[0].split(':')[0])
+   minute = (item[0].split(':')[1])
+   time_list = []
+   time_list.append(hour + ':' + minute)
+hour_lt = []
+minute_lt = []
+for time in time_list:
+   hour = time_list(time.split(':')[0])
+   minute = time_list(time.split(':')[1])
+   hour_lt.append(hour)
+   minute_lt.append(minute)
+   min_hour = min(hour_lt)
+   min_minute = min(minute_lt)
+   if min_hour != min_minute and time_list[min_minute].split(':')[0] > time_list[min_hour].split(':')[0]:
+      re_arrangement.append(arrangement[min_minute])
+      arrangement.remove(arrangement[min_minute])
+   else:
+      re_arrangement.append(arrangement[min_hour])
+      arrangement.remove(arrangement[min_hour])
+
+   
+   
+
+
+
+   
+   
       
 
 
