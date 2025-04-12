@@ -1,7 +1,5 @@
 from datetime import  datetime
 
-
-
 # ts = '2023-02-01 14:30:00'
 tstamp = datetime.strptime('3:59',
                   '%H:%M')
@@ -12,36 +10,34 @@ Orderliness={
 }
 
 
-Db  = [
-    {
-    'patient1':{'1:00':['Location','11'],
-                '2:00':['Location','12'],
+Db  =  {
+    'patient1':[['1:00','Location','11'],
+                ['2:00','Location','12']],
 
 
-    }
-    },
-        {
-    'patient2':{'1:00':['Location','21'],
-                '2:00':['Location','22'],
-    }
+ 
+    'patient2':[['1:30','Location','13'],
+                ['2:30','Location','14']],
         }
-]
-
-# # Create the pandas DataFrame
-# time = input('When?')
-# patient = input("Who is in need?")
-# info = db[patient]
-# keys = list(filter(lambda key: info[key] == ['location', 'comment'], info))
-# print(keys)
 
 
+#hour = print(assignment[0].split(':')[0])
+#minute = print(assignment[0].split(':')[1])
+arrangement = []
+for assignments in Db.values():
+   for assignment in assignments:
+      
 
-def time_resort(orderliness,db):
-    temp_db = []
-    for patient in db:
-        for event in patient.values():
-            temp_db.append([patient.values(),event])
-    return temp_db
-print(time_resort(Orderliness,Db))
-print(time_resort(Orderliness,Db)[0])
 
+
+      
+
+def deleter(patient, time, location, message):
+   info = Db[patient]
+   task_a = [time, location, message]
+   for task in info:
+      if task == task_a:
+        print('TAT')
+        Db[patient].remove(task)
+deleter('patient2','1:30','Location','13')
+print(Db)
