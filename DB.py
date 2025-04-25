@@ -45,8 +45,7 @@ for task_list in pa_task:
 for item in arrangement:
    hour = (item[0].split(':')[0])
    minute = (item[0].split(':')[1])
-   time_list = []
-   time_list.append(hour + ':' + minute)
+   time_list = [hour + ':' + minute] # Recommend by pycharm
 hour_lt = []
 minute_lt = []
 for time in time_list:
