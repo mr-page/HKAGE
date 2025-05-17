@@ -15,3 +15,5 @@ print(protected_response.json())
 
 response = requests.get("https://instantly-beloved-griffon.ngrok-free.app/data", headers={"Authorization": f"Bearer {access_token}"})
 print(response.json())
+
+
