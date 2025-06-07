@@ -3,6 +3,8 @@ from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from jose import JWTError, jwt
 from passlib.context import CryptContext
 from datetime import datetime, timedelta
+import base64
+import requests
 
 # Configuration
 SECRET_KEY = "your-secret-key-here"
@@ -103,4 +105,6 @@ async def get_data(token: str = Depends(oauth2_scheme)):
         "user": username,
         "data": sample_data  # Return your dictionary here
     }
+
+
 
