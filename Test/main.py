@@ -1,85 +1,56 @@
-from fastapi import FastAPI, UploadFile, File, Form, HTTPException
-import base64
-import requests
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
+import requests
+import base64
 from io import BytesIO
-import soundfile as sf
-import json
 
 app = FastAPI(title="Cantonese Transcription API")
 
 
+class TranscriptionRequest(BaseModel):
+    audio_data: str  # base64 encoded audio
+    format: str  # audio format (mp3/wav)
+
+
 class TranscriptionResponse(BaseModel):
     text: str
-    tokens_used: int
 
 
 @app.post("/transcribe", response_model=TranscriptionResponse)
-async def transcribe_cantonese(
-        file: UploadFile = File(...),
-        prompt: str = Form("將以下粵語音頻轉換為繁體中文文本，如果不能請解釋")
-):
+async def transcribe_cantonese(request: TranscriptionRequest):
     try:
-        # 1. Read and convert audio
-        audio_data = await file.read()
-        file_format = file.filename.split('.')[-1].lower()
-
-        if file_format != 'mp3':
-            with BytesIO(audio_data) as input_buffer:
-                data, samplerate = sf.read(input_buffer)
-                with BytesIO() as output_buffer:
-                    sf.write(output_buffer, data, samplerate, format='mp3')
-                    audio_data = output_buffer.getvalue()
-
-        # 2. Prepare API request
-        audio_base64 = base64.b64encode(audio_data).decode('utf-8')
-        payload = {
-            "messages": [{
-                "role": "user",
-                "content": [
-                    {"type": "text", "text": prompt},
-                    {
-                        "type": "input_audio",
-                        "input_audio": {
-                            "data": audio_base64,
-                            "format": "mp3"
-                        }
-                    }
-                ]
-            }],
-            "model": "openai-audio",
-            "language": "yue"
-        }
-
-        # 3. Call API and parse response
+        # 1. Call Pollinations.ai API directly
         response = requests.post(
             "https://text.pollinations.ai/openai",
-            json=payload,
+            json={
+                "messages": [{
+                    "role": "user",
+                    "content": [
+                        {"type": "text", "text": "Transcribe this Cantonese audio to Traditional Chinese"},
+                        {
+                            "type": "input_audio",
+                            "input_audio": {
+                                "data": request.audio_data,
+                                "format": request.format
+                            }
+                        }
+                    ]
+                }],
+                "model": "openai-audio",
+                "language": "yue"
+            },
             timeout=30
         )
 
-        # Handle non-JSON responses
-        try:
-            result = response.json()
-        except json.JSONDecodeError:
-            raise HTTPException(502, f"Invalid API response: {response.text}")
+        # 2. Validate response
+        result = response.json()
+        if "choices" not in result:
+            raise HTTPException(502, "Invalid API response")
 
-        # 4. Extract and validate transcription
-        if not isinstance(result, dict):
-            raise HTTPException(502, "Unexpected API response format")
+        return {"text": result['choices'][0]['message']['content']}
 
-        try:
-            content = result['choices'][0]['message']['content']
-            tokens = result['usage']['total_tokens']
-            return {
-                "text": content,
-                "tokens_used": tokens
-            }
-        except (KeyError, IndexError) as e:
-            raise HTTPException(502, f"Missing expected fields in response: {str(e)}")
-
-    except HTTPException:
-        raise
+    except requests.exceptions.RequestException as e:
+        raise HTTPException(502, f"API request failed: {str(e)}")
     except Exception as e:
         raise HTTPException(500, f"Processing failed: {str(e)}")
 
