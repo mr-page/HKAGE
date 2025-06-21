@@ -54,4 +54,5 @@ with gr.Blocks(title="粵語轉換器", theme=gr.themes.Soft()) as app:
     )
 
 if __name__ == "__main__":
-    app.launch(server_port=7860)
+    app.launch(server_port=7860,share=True)
+

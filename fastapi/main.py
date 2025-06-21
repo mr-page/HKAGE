@@ -1,110 +1,65 @@
-from fastapi import FastAPI, Depends, HTTPException, status
-from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-from jose import JWTError, jwt
-from passlib.context import CryptContext
-from datetime import datetime, timedelta
-import base64
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
 import requests
+import base64
+from io import BytesIO
 
-# Configuration
-SECRET_KEY = "your-secret-key-here"
-ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
-
-app = FastAPI()
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
-
-# Mock user database with hashed passwords
-fake_users_db = {
-    "user1": {
-        "username": "user1",
-        "hashed_password": pwd_context.hash("password1"),
-        "role": "admin"
-    },
-"user2": {
-        "username": "user2",
-        "hashed_password": pwd_context.hash("password2"),
-        "role": "admin"
-    },
-"E1": {
-        "username": "E1",
-        "hashed_password": pwd_context.hash("pw1"),
-        "role": "admin"
-    }
-}
+app = FastAPI(title="Cantonese Transcription API")
 
 
-def create_access_token(data: dict, expires_delta: timedelta):
-    to_encode = data.copy()
-    expire = datetime.utcnow() + expires_delta
-    to_encode.update({"exp": expire})
-    return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+class TranscriptionRequest(BaseModel):
+    audio_data: str  # base64 encoded audio
+    format: str  # audio format (mp3/wav)
 
-@app.get("/test")
-async def test():
-    return  'hi'
 
-@app.post("/token")
-async def login(form_data: OAuth2PasswordRequestForm = Depends()):
-    user = fake_users_db.get(form_data.username)
-    if not user or not pwd_context.verify(form_data.password, user["hashed_password"]):
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Incorrect username or password"
+class TranscriptionResponse(BaseModel):
+    text: str
+
+
+@app.post("/transcribe", response_model=TranscriptionResponse)
+async def transcribe_cantonese(request: TranscriptionRequest):
+    try:
+        # 1. Call Pollinations.ai API directly
+        response = requests.post(
+            "https://text.pollinations.ai/openai",
+            json={
+                "messages": [{
+                    "role": "user",
+                    "content": [
+                        {"type": "text", "text": "Transcribe this Cantonese audio to Traditional Chinese"},
+                        {
+                            "type": "input_audio",
+                            "input_audio": {
+                                "data": request.audio_data,
+                                "format": request.format
+                            }
+                        }
+                    ]
+                }],
+                "model": "openai-audio",
+                "language": "yue"
+            },
+            timeout=30
         )
 
-    access_token = create_access_token(
-        data={"sub": user["username"]},
-        expires_delta=timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-    )
+        # 2. Validate response
+        result = response.json()
+        if "choices" not in result:
+            raise HTTPException(502, "Invalid API response")
 
-    return {"access_token": access_token, "token_type": "bearer"}
+        return {"text": result['choices'][0]['message']['content']}
 
-
-@app.get("/protected")
-async def protected_route(token: str = Depends(oauth2_scheme)):
-    try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        username = payload.get("sub")
-        if not username:
-            raise HTTPException(status_code=401, detail="Invalid token")
-    except JWTError:
-        raise HTTPException(status_code=401, detail="Invalid token")
-
-    return {"message": "Access granted", "user": username}
+    except requests.exceptions.RequestException as e:
+        raise HTTPException(502, f"API request failed: {str(e)}")
+    except Exception as e:
+        raise HTTPException(500, f"Processing failed: {str(e)}")
 
 
-# Sample dictionary data
-sample_data = {
-    "fruit": "apple",
-    "color": "red",
-    "price": 1.99,
-    "in_stock": True
-}
+if __name__ == "__main__":
+    import uvicorn
 
+    uvicorn.run(app, host="0.0.0.0", port=8000)
 
-
-
-
-
-
-@app.get("/data")
-async def get_data(token: str = Depends(oauth2_scheme)):
-    try:
-        # Verify token (reuse existing JWT validation)
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        username = payload.get("sub")
-        if not username:
-            raise HTTPException(status_code=401, detail="Invalid token")
-    except JWTError:
-        raise HTTPException(status_code=401, detail="Invalid token")
-
-    return {
-        "message": "Data retrieved successfully",
-        "user": username,
-        "data": sample_data  # Return your dictionary here
-    }
 
 
 
