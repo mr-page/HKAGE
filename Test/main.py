@@ -63,7 +63,7 @@ class TextData(BaseModel):
 
 @app.post("/confirmation")
 async def confirmation(data: TextData):
-
+    print(data)
 
     return {"received_text": data.text}
 

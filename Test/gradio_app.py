@@ -29,17 +29,18 @@ def process_audio(audio_path):
 
 # confirmation progress
 def confirmation(result_text):
-    url = "https://instantly-beloved-griffon.ngrok-free.app/confirmation"
-    data = {"text": result_text}
-    headers = {"Content-Type": "application/json"}
+    if result_text!='Processing error: Invalid file: None':
+        url = "https://instantly-beloved-griffon.ngrok-free.app/confirmation"
+        data = {"text": result_text}
+        headers = {"Content-Type": "application/json"}
 
-    # Send POST request
-    response = requests.post(
-        url,
-        data=json.dumps(data),
-        headers=headers,
-        timeout=10  # 10 second timeout
-    )
+        # Send POST request
+        response = requests.post(
+            url,
+            data=json.dumps(data),
+            headers=headers,
+            timeout=10  # 10 second timeout
+        )
     return
 
 
@@ -63,7 +64,8 @@ with gr.Blocks(title="粵語轉換器", theme=gr.themes.Soft()) as app:
                 placeholder="繁體中文文本將顯示在此...",
                 lines=5
             )
-            confirmation_btn = gr.Button('確定',variant='primary')
+            confirmation_btn= gr.Button('確定',variant='primary')
+
 
     submit_btn.click(
         fn=process_audio,
