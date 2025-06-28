@@ -3,6 +3,7 @@ from pydantic import BaseModel
 import requests
 import base64
 from io import BytesIO
+from datetime import  datetime
 
 app = FastAPI(title="Cantonese Transcription API")
 
@@ -55,10 +56,14 @@ async def transcribe_cantonese(request: TranscriptionRequest):
         raise HTTPException(500, f"Processing failed: {str(e)}")
 
 
-# Confirmation part
+class TextData(BaseModel):
+    text: str
+
 @app.post("/confirmation")
-def confirmation():
-    return
+async def confirmation(data: TextData):
+
+
+    return {"received_text": data.text}
 
 
 
