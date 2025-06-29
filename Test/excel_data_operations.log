@@ -1,0 +1,200 @@
+2025-06-29 18:08:03,114 - INFO - {'operation': 'file_detection', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:08:03.114895', 'success': True, 'details': {'extracted_number': '17'}, 'error': None}
+
+2025-06-29 18:08:03,134 - INFO - {'operation': 'workbook_load', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:08:03.134298', 'success': True, 'details': {'load_time': 0.018391, 'sheet': 'Sheet'}, 'error': None}
+
+2025-06-29 18:08:03,134 - INFO - {'operation': 'column_found', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:08:03.134298', 'success': True, 'details': {'column': 31, 'search_value': '29', 'range_searched': 'C4:AG4'}, 'error': None}
+
+2025-06-29 18:08:03,135 - INFO - {'operation': 'row_found', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:08:03.135317', 'success': True, 'details': {'row': 79, 'search_value': '18:08', 'range_searched': 'A6:A101'}, 'error': None}
+
+2025-06-29 18:08:03,136 - INFO - {'operation': 'cell_located', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:08:03.136838', 'success': True, 'details': {'duration': 0.00254, 'coordinates': 'Row: 79, Column: 31'}, 'error': None}
+
+2025-06-29 18:08:03,242 - INFO - {'operation': 'cell_write', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:08:03.242285', 'success': True, 'details': {'coordinates': 'Row: 79, Column: 31', 'value_written': 'YOUR_VALUE_HERE', 'duration': 0.105447}, 'error': None}
+
+2025-06-29 18:08:03,242 - INFO - {'operation': 'complete_operation', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:08:03.242285', 'success': True, 'details': {'total_duration': 0.126378}, 'error': None}
+
+2025-06-29 18:08:03,243 - INFO - {'operation': 'column_found', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:08:03.243834', 'success': True, 'details': {'column': 31, 'search_value': '29', 'range_searched': 'C4:AG4'}, 'error': None}
+
+2025-06-29 18:08:03,243 - INFO - {'operation': 'row_found', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:08:03.243834', 'success': True, 'details': {'row': 79, 'search_value': '18:08', 'range_searched': 'A6:A101'}, 'error': None}
+
+2025-06-29 18:08:03,243 - INFO - {'operation': 'cell_located', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:08:03.243834', 'success': True, 'details': {'duration': 0.0, 'coordinates': 'Row: 79, Column: 31'}, 'error': None}
+
+2025-06-29 18:09:32,863 - INFO - {'operation': 'file_detection', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:09:32.863876', 'success': True, 'details': {'extracted_number': '17'}, 'error': None}
+
+2025-06-29 18:09:32,863 - INFO - {'operation': 'file_detection', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:09:32.863876', 'success': True, 'details': {'extracted_number': '17'}, 'error': None}
+
+2025-06-29 18:09:32,879 - INFO - {'operation': 'workbook_load', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:09:32.879862', 'success': True, 'details': {'load_time': 0.014976, 'sheet': 'Sheet'}, 'error': None}
+
+2025-06-29 18:09:32,879 - INFO - {'operation': 'workbook_load', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:09:32.879862', 'success': True, 'details': {'load_time': 0.014976, 'sheet': 'Sheet'}, 'error': None}
+
+2025-06-29 18:09:32,880 - INFO - {'operation': 'column_found', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:09:32.880866', 'success': True, 'details': {'column': 31, 'search_value': '29', 'range_searched': 'C4:AG4'}, 'error': None}
+
+2025-06-29 18:09:32,880 - INFO - {'operation': 'column_found', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:09:32.880866', 'success': True, 'details': {'column': 31, 'search_value': '29', 'range_searched': 'C4:AG4'}, 'error': None}
+
+2025-06-29 18:09:32,881 - INFO - {'operation': 'row_found', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:09:32.881869', 'success': True, 'details': {'row': 79, 'search_value': '18:09', 'range_searched': 'A6:A101'}, 'error': None}
+
+2025-06-29 18:09:32,881 - INFO - {'operation': 'row_found', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:09:32.881869', 'success': True, 'details': {'row': 79, 'search_value': '18:09', 'range_searched': 'A6:A101'}, 'error': None}
+
+2025-06-29 18:09:32,881 - INFO - {'operation': 'cell_located', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:09:32.881869', 'success': True, 'details': {'duration': 0.002007, 'coordinates': 'Row: 79, Column: 31'}, 'error': None}
+
+2025-06-29 18:09:32,881 - INFO - {'operation': 'cell_located', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:09:32.881869', 'success': True, 'details': {'duration': 0.002007, 'coordinates': 'Row: 79, Column: 31'}, 'error': None}
+
+2025-06-29 18:09:35,776 - INFO - {'operation': 'cell_write', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:09:35.776491', 'success': True, 'details': {'coordinates': 'Row: 79, Column: 31', 'value_written': 'YOUR_VALUE_HERE', 'duration': 2.894622}, 'error': None}
+
+2025-06-29 18:09:35,776 - INFO - {'operation': 'cell_write', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:09:35.776491', 'success': True, 'details': {'coordinates': 'Row: 79, Column: 31', 'value_written': 'YOUR_VALUE_HERE', 'duration': 2.894622}, 'error': None}
+
+2025-06-29 18:09:35,776 - INFO - {'operation': 'complete_operation', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:09:35.776491', 'success': True, 'details': {'total_duration': 2.911605}, 'error': None}
+
+2025-06-29 18:09:35,776 - INFO - {'operation': 'complete_operation', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:09:35.776491', 'success': True, 'details': {'total_duration': 2.911605}, 'error': None}
+
+2025-06-29 18:09:35,777 - INFO - {'operation': 'column_found', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:09:35.777500', 'success': True, 'details': {'column': 31, 'search_value': '29', 'range_searched': 'C4:AG4'}, 'error': None}
+
+2025-06-29 18:09:35,777 - INFO - {'operation': 'column_found', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:09:35.777500', 'success': True, 'details': {'column': 31, 'search_value': '29', 'range_searched': 'C4:AG4'}, 'error': None}
+
+2025-06-29 18:09:35,778 - INFO - {'operation': 'row_found', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:09:35.778499', 'success': True, 'details': {'row': 79, 'search_value': '18:09', 'range_searched': 'A6:A101'}, 'error': None}
+
+2025-06-29 18:09:35,778 - INFO - {'operation': 'row_found', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:09:35.778499', 'success': True, 'details': {'row': 79, 'search_value': '18:09', 'range_searched': 'A6:A101'}, 'error': None}
+
+2025-06-29 18:09:35,778 - INFO - {'operation': 'cell_located', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:09:35.778499', 'success': True, 'details': {'duration': 0.002008, 'coordinates': 'Row: 79, Column: 31'}, 'error': None}
+
+2025-06-29 18:09:35,778 - INFO - {'operation': 'cell_located', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:09:35.778499', 'success': True, 'details': {'duration': 0.002008, 'coordinates': 'Row: 79, Column: 31'}, 'error': None}
+
+2025-06-29 18:10:26,571 - INFO - {'operation': 'file_detection', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:10:26.571561', 'success': True, 'details': {'extracted_number': '17'}, 'error': None}
+
+2025-06-29 18:10:26,571 - INFO - {'operation': 'file_detection', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:10:26.571561', 'success': True, 'details': {'extracted_number': '17'}, 'error': None}
+
+2025-06-29 18:10:26,571 - INFO - {'operation': 'file_detection', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:10:26.571561', 'success': True, 'details': {'extracted_number': '17'}, 'error': None}
+
+2025-06-29 18:10:26,579 - INFO - {'operation': 'workbook_load', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:10:26.579011', 'success': True, 'details': {'load_time': 0.00745, 'sheet': 'Sheet'}, 'error': None}
+
+2025-06-29 18:10:26,579 - INFO - {'operation': 'workbook_load', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:10:26.579011', 'success': True, 'details': {'load_time': 0.00745, 'sheet': 'Sheet'}, 'error': None}
+
+2025-06-29 18:10:26,579 - INFO - {'operation': 'workbook_load', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:10:26.579011', 'success': True, 'details': {'load_time': 0.00745, 'sheet': 'Sheet'}, 'error': None}
+
+2025-06-29 18:10:26,579 - INFO - {'operation': 'column_found', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:10:26.579630', 'success': True, 'details': {'column': 31, 'search_value': '29', 'range_searched': 'C4:AG4'}, 'error': None}
+
+2025-06-29 18:10:26,579 - INFO - {'operation': 'column_found', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:10:26.579630', 'success': True, 'details': {'column': 31, 'search_value': '29', 'range_searched': 'C4:AG4'}, 'error': None}
+
+2025-06-29 18:10:26,579 - INFO - {'operation': 'column_found', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:10:26.579630', 'success': True, 'details': {'column': 31, 'search_value': '29', 'range_searched': 'C4:AG4'}, 'error': None}
+
+2025-06-29 18:10:26,579 - INFO - {'operation': 'row_found', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:10:26.579630', 'success': True, 'details': {'row': 79, 'search_value': '18:10', 'range_searched': 'A6:A101'}, 'error': None}
+
+2025-06-29 18:10:26,579 - INFO - {'operation': 'row_found', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:10:26.579630', 'success': True, 'details': {'row': 79, 'search_value': '18:10', 'range_searched': 'A6:A101'}, 'error': None}
+
+2025-06-29 18:10:26,579 - INFO - {'operation': 'row_found', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:10:26.579630', 'success': True, 'details': {'row': 79, 'search_value': '18:10', 'range_searched': 'A6:A101'}, 'error': None}
+
+2025-06-29 18:10:26,579 - INFO - {'operation': 'cell_located', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:10:26.579630', 'success': True, 'details': {'duration': 0.000619, 'coordinates': 'Row: 79, Column: 31'}, 'error': None}
+
+2025-06-29 18:10:26,579 - INFO - {'operation': 'cell_located', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:10:26.579630', 'success': True, 'details': {'duration': 0.000619, 'coordinates': 'Row: 79, Column: 31'}, 'error': None}
+
+2025-06-29 18:10:26,579 - INFO - {'operation': 'cell_located', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:10:26.579630', 'success': True, 'details': {'duration': 0.000619, 'coordinates': 'Row: 79, Column: 31'}, 'error': None}
+
+2025-06-29 18:10:26,601 - INFO - {'operation': 'cell_write', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:10:26.601069', 'success': True, 'details': {'coordinates': 'Row: 79, Column: 31', 'value_written': 'YOUR_VALUE_HERE', 'duration': 0.021439}, 'error': None}
+
+2025-06-29 18:10:26,601 - INFO - {'operation': 'cell_write', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:10:26.601069', 'success': True, 'details': {'coordinates': 'Row: 79, Column: 31', 'value_written': 'YOUR_VALUE_HERE', 'duration': 0.021439}, 'error': None}
+
+2025-06-29 18:10:26,601 - INFO - {'operation': 'cell_write', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:10:26.601069', 'success': True, 'details': {'coordinates': 'Row: 79, Column: 31', 'value_written': 'YOUR_VALUE_HERE', 'duration': 0.021439}, 'error': None}
+
+2025-06-29 18:10:26,602 - INFO - {'operation': 'complete_operation', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:10:26.602510', 'success': True, 'details': {'total_duration': 0.030949}, 'error': None}
+
+2025-06-29 18:10:26,602 - INFO - {'operation': 'complete_operation', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:10:26.602510', 'success': True, 'details': {'total_duration': 0.030949}, 'error': None}
+
+2025-06-29 18:10:26,602 - INFO - {'operation': 'complete_operation', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:10:26.602510', 'success': True, 'details': {'total_duration': 0.030949}, 'error': None}
+
+2025-06-29 18:10:26,602 - INFO - {'operation': 'column_found', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:10:26.602510', 'success': True, 'details': {'column': 31, 'search_value': '29', 'range_searched': 'C4:AG4'}, 'error': None}
+
+2025-06-29 18:10:26,602 - INFO - {'operation': 'column_found', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:10:26.602510', 'success': True, 'details': {'column': 31, 'search_value': '29', 'range_searched': 'C4:AG4'}, 'error': None}
+
+2025-06-29 18:10:26,602 - INFO - {'operation': 'column_found', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:10:26.602510', 'success': True, 'details': {'column': 31, 'search_value': '29', 'range_searched': 'C4:AG4'}, 'error': None}
+
+2025-06-29 18:10:26,602 - INFO - {'operation': 'row_found', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:10:26.602510', 'success': True, 'details': {'row': 79, 'search_value': '18:10', 'range_searched': 'A6:A101'}, 'error': None}
+
+2025-06-29 18:10:26,602 - INFO - {'operation': 'row_found', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:10:26.602510', 'success': True, 'details': {'row': 79, 'search_value': '18:10', 'range_searched': 'A6:A101'}, 'error': None}
+
+2025-06-29 18:10:26,602 - INFO - {'operation': 'row_found', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:10:26.602510', 'success': True, 'details': {'row': 79, 'search_value': '18:10', 'range_searched': 'A6:A101'}, 'error': None}
+
+2025-06-29 18:10:26,602 - INFO - {'operation': 'cell_located', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:10:26.602510', 'success': True, 'details': {'duration': 0.0, 'coordinates': 'Row: 79, Column: 31'}, 'error': None}
+
+2025-06-29 18:10:26,602 - INFO - {'operation': 'cell_located', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:10:26.602510', 'success': True, 'details': {'duration': 0.0, 'coordinates': 'Row: 79, Column: 31'}, 'error': None}
+
+2025-06-29 18:10:26,602 - INFO - {'operation': 'cell_located', 'file': 'record document/17.xlsx', 'timestamp': '2025-06-29T18:10:26.602510', 'success': True, 'details': {'duration': 0.0, 'coordinates': 'Row: 79, Column: 31'}, 'error': None}
+
+2025-06-29 18:23:24,286 - INFO - {'operation': 'file_detection', 'file': 'record document/13.xlsx', 'timestamp': '2025-06-29T18:23:24.286817', 'success': True, 'details': {'extracted_number': '13'}, 'error': None}
+
+2025-06-29 18:23:24,286 - INFO - {'operation': 'file_detection', 'file': 'record document/13.xlsx', 'timestamp': '2025-06-29T18:23:24.286817', 'success': True, 'details': {'extracted_number': '13'}, 'error': None}
+
+2025-06-29 18:23:24,286 - INFO - {'operation': 'file_detection', 'file': 'record document/13.xlsx', 'timestamp': '2025-06-29T18:23:24.286817', 'success': True, 'details': {'extracted_number': '13'}, 'error': None}
+
+2025-06-29 18:23:24,286 - INFO - {'operation': 'file_detection', 'file': 'record document/13.xlsx', 'timestamp': '2025-06-29T18:23:24.286817', 'success': True, 'details': {'extracted_number': '13'}, 'error': None}
+
+2025-06-29 18:23:24,291 - INFO - {'operation': 'workbook_load', 'file': 'record document/13.xlsx', 'timestamp': '2025-06-29T18:23:24.291618', 'success': True, 'details': {'load_time': 0.004208, 'sheet': 'Sheet'}, 'error': None}
+
+2025-06-29 18:23:24,291 - INFO - {'operation': 'workbook_load', 'file': 'record document/13.xlsx', 'timestamp': '2025-06-29T18:23:24.291618', 'success': True, 'details': {'load_time': 0.004208, 'sheet': 'Sheet'}, 'error': None}
+
+2025-06-29 18:23:24,291 - INFO - {'operation': 'workbook_load', 'file': 'record document/13.xlsx', 'timestamp': '2025-06-29T18:23:24.291618', 'success': True, 'details': {'load_time': 0.004208, 'sheet': 'Sheet'}, 'error': None}
+
+2025-06-29 18:23:24,291 - INFO - {'operation': 'workbook_load', 'file': 'record document/13.xlsx', 'timestamp': '2025-06-29T18:23:24.291618', 'success': True, 'details': {'load_time': 0.004208, 'sheet': 'Sheet'}, 'error': None}
+
+2025-06-29 18:23:24,291 - INFO - {'operation': 'column_found', 'file': 'record document/13.xlsx', 'timestamp': '2025-06-29T18:23:24.291618', 'success': True, 'details': {'column': 31, 'search_value': '29', 'range_searched': 'C4:AG4'}, 'error': None}
+
+2025-06-29 18:23:24,291 - INFO - {'operation': 'column_found', 'file': 'record document/13.xlsx', 'timestamp': '2025-06-29T18:23:24.291618', 'success': True, 'details': {'column': 31, 'search_value': '29', 'range_searched': 'C4:AG4'}, 'error': None}
+
+2025-06-29 18:23:24,291 - INFO - {'operation': 'column_found', 'file': 'record document/13.xlsx', 'timestamp': '2025-06-29T18:23:24.291618', 'success': True, 'details': {'column': 31, 'search_value': '29', 'range_searched': 'C4:AG4'}, 'error': None}
+
+2025-06-29 18:23:24,291 - INFO - {'operation': 'column_found', 'file': 'record document/13.xlsx', 'timestamp': '2025-06-29T18:23:24.291618', 'success': True, 'details': {'column': 31, 'search_value': '29', 'range_searched': 'C4:AG4'}, 'error': None}
+
+2025-06-29 18:23:24,291 - INFO - {'operation': 'row_found', 'file': 'record document/13.xlsx', 'timestamp': '2025-06-29T18:23:24.291618', 'success': True, 'details': {'row': 80, 'search_value': '18:23', 'range_searched': 'A6:A101'}, 'error': None}
+
+2025-06-29 18:23:24,291 - INFO - {'operation': 'row_found', 'file': 'record document/13.xlsx', 'timestamp': '2025-06-29T18:23:24.291618', 'success': True, 'details': {'row': 80, 'search_value': '18:23', 'range_searched': 'A6:A101'}, 'error': None}
+
+2025-06-29 18:23:24,291 - INFO - {'operation': 'row_found', 'file': 'record document/13.xlsx', 'timestamp': '2025-06-29T18:23:24.291618', 'success': True, 'details': {'row': 80, 'search_value': '18:23', 'range_searched': 'A6:A101'}, 'error': None}
+
+2025-06-29 18:23:24,291 - INFO - {'operation': 'row_found', 'file': 'record document/13.xlsx', 'timestamp': '2025-06-29T18:23:24.291618', 'success': True, 'details': {'row': 80, 'search_value': '18:23', 'range_searched': 'A6:A101'}, 'error': None}
+
+2025-06-29 18:23:24,291 - INFO - {'operation': 'cell_located', 'file': 'record document/13.xlsx', 'timestamp': '2025-06-29T18:23:24.291618', 'success': True, 'details': {'duration': 0.0, 'coordinates': 'Row: 80, Column: 31'}, 'error': None}
+
+2025-06-29 18:23:24,291 - INFO - {'operation': 'cell_located', 'file': 'record document/13.xlsx', 'timestamp': '2025-06-29T18:23:24.291618', 'success': True, 'details': {'duration': 0.0, 'coordinates': 'Row: 80, Column: 31'}, 'error': None}
+
+2025-06-29 18:23:24,291 - INFO - {'operation': 'cell_located', 'file': 'record document/13.xlsx', 'timestamp': '2025-06-29T18:23:24.291618', 'success': True, 'details': {'duration': 0.0, 'coordinates': 'Row: 80, Column: 31'}, 'error': None}
+
+2025-06-29 18:23:24,291 - INFO - {'operation': 'cell_located', 'file': 'record document/13.xlsx', 'timestamp': '2025-06-29T18:23:24.291618', 'success': True, 'details': {'duration': 0.0, 'coordinates': 'Row: 80, Column: 31'}, 'error': None}
+
+2025-06-29 18:23:27,131 - INFO - {'operation': 'cell_write', 'file': 'record document/13.xlsx', 'timestamp': '2025-06-29T18:23:27.131566', 'success': True, 'details': {'coordinates': 'Row: 80, Column: 31', 'value_written': 'YOUR_VALUE_HERE', 'duration': 2.838433}, 'error': None}
+
+2025-06-29 18:23:27,131 - INFO - {'operation': 'cell_write', 'file': 'record document/13.xlsx', 'timestamp': '2025-06-29T18:23:27.131566', 'success': True, 'details': {'coordinates': 'Row: 80, Column: 31', 'value_written': 'YOUR_VALUE_HERE', 'duration': 2.838433}, 'error': None}
+
+2025-06-29 18:23:27,131 - INFO - {'operation': 'cell_write', 'file': 'record document/13.xlsx', 'timestamp': '2025-06-29T18:23:27.131566', 'success': True, 'details': {'coordinates': 'Row: 80, Column: 31', 'value_written': 'YOUR_VALUE_HERE', 'duration': 2.838433}, 'error': None}
+
+2025-06-29 18:23:27,131 - INFO - {'operation': 'cell_write', 'file': 'record document/13.xlsx', 'timestamp': '2025-06-29T18:23:27.131566', 'success': True, 'details': {'coordinates': 'Row: 80, Column: 31', 'value_written': 'YOUR_VALUE_HERE', 'duration': 2.838433}, 'error': None}
+
+2025-06-29 18:23:27,131 - INFO - {'operation': 'complete_operation', 'file': 'record document/13.xlsx', 'timestamp': '2025-06-29T18:23:27.131566', 'success': True, 'details': {'total_duration': 2.844156}, 'error': None}
+
+2025-06-29 18:23:27,131 - INFO - {'operation': 'complete_operation', 'file': 'record document/13.xlsx', 'timestamp': '2025-06-29T18:23:27.131566', 'success': True, 'details': {'total_duration': 2.844156}, 'error': None}
+
+2025-06-29 18:23:27,131 - INFO - {'operation': 'complete_operation', 'file': 'record document/13.xlsx', 'timestamp': '2025-06-29T18:23:27.131566', 'success': True, 'details': {'total_duration': 2.844156}, 'error': None}
+
+2025-06-29 18:23:27,131 - INFO - {'operation': 'complete_operation', 'file': 'record document/13.xlsx', 'timestamp': '2025-06-29T18:23:27.131566', 'success': True, 'details': {'total_duration': 2.844156}, 'error': None}
+
+2025-06-29 18:23:27,133 - INFO - {'operation': 'column_found', 'file': 'record document/13.xlsx', 'timestamp': '2025-06-29T18:23:27.133076', 'success': True, 'details': {'column': 31, 'search_value': '29', 'range_searched': 'C4:AG4'}, 'error': None}
+
+2025-06-29 18:23:27,133 - INFO - {'operation': 'column_found', 'file': 'record document/13.xlsx', 'timestamp': '2025-06-29T18:23:27.133076', 'success': True, 'details': {'column': 31, 'search_value': '29', 'range_searched': 'C4:AG4'}, 'error': None}
+
+2025-06-29 18:23:27,133 - INFO - {'operation': 'column_found', 'file': 'record document/13.xlsx', 'timestamp': '2025-06-29T18:23:27.133076', 'success': True, 'details': {'column': 31, 'search_value': '29', 'range_searched': 'C4:AG4'}, 'error': None}
+
+2025-06-29 18:23:27,133 - INFO - {'operation': 'column_found', 'file': 'record document/13.xlsx', 'timestamp': '2025-06-29T18:23:27.133076', 'success': True, 'details': {'column': 31, 'search_value': '29', 'range_searched': 'C4:AG4'}, 'error': None}
+
+2025-06-29 18:23:27,134 - INFO - {'operation': 'row_found', 'file': 'record document/13.xlsx', 'timestamp': '2025-06-29T18:23:27.134089', 'success': True, 'details': {'row': 80, 'search_value': '18:23', 'range_searched': 'A6:A101'}, 'error': None}
+
+2025-06-29 18:23:27,134 - INFO - {'operation': 'row_found', 'file': 'record document/13.xlsx', 'timestamp': '2025-06-29T18:23:27.134089', 'success': True, 'details': {'row': 80, 'search_value': '18:23', 'range_searched': 'A6:A101'}, 'error': None}
+
+2025-06-29 18:23:27,134 - INFO - {'operation': 'row_found', 'file': 'record document/13.xlsx', 'timestamp': '2025-06-29T18:23:27.134089', 'success': True, 'details': {'row': 80, 'search_value': '18:23', 'range_searched': 'A6:A101'}, 'error': None}
+
+2025-06-29 18:23:27,134 - INFO - {'operation': 'row_found', 'file': 'record document/13.xlsx', 'timestamp': '2025-06-29T18:23:27.134089', 'success': True, 'details': {'row': 80, 'search_value': '18:23', 'range_searched': 'A6:A101'}, 'error': None}
+
+2025-06-29 18:23:27,134 - INFO - {'operation': 'cell_located', 'file': 'record document/13.xlsx', 'timestamp': '2025-06-29T18:23:27.134089', 'success': True, 'details': {'duration': 0.001013, 'coordinates': 'Row: 80, Column: 31'}, 'error': None}
+
+2025-06-29 18:23:27,134 - INFO - {'operation': 'cell_located', 'file': 'record document/13.xlsx', 'timestamp': '2025-06-29T18:23:27.134089', 'success': True, 'details': {'duration': 0.001013, 'coordinates': 'Row: 80, Column: 31'}, 'error': None}
+
+2025-06-29 18:23:27,134 - INFO - {'operation': 'cell_located', 'file': 'record document/13.xlsx', 'timestamp': '2025-06-29T18:23:27.134089', 'success': True, 'details': {'duration': 0.001013, 'coordinates': 'Row: 80, Column: 31'}, 'error': None}
+
+2025-06-29 18:23:27,134 - INFO - {'operation': 'cell_located', 'file': 'record document/13.xlsx', 'timestamp': '2025-06-29T18:23:27.134089', 'success': True, 'details': {'duration': 0.001013, 'coordinates': 'Row: 80, Column: 31'}, 'error': None}
+

@@ -10,13 +10,14 @@ def process_audio(audio_path):
     try:
         # 1. Read audio and convert to MP3 in memory
         data, samplerate = sf.read(audio_path)
+        print(audio_path)
         with BytesIO() as mp3_buffer:
             sf.write(mp3_buffer, data, samplerate, format='mp3')
             audio_base64 = base64.b64encode(mp3_buffer.getvalue()).decode('utf-8')
 
         # 2. Send to server
         response = requests.post(
-            "http://localhost:8000/transcribe",
+            "https://instantly-beloved-griffon.ngrok-free.app/transcribe",
             json={"audio_data": audio_base64, "format": "mp3"},
             timeout=30
         )
