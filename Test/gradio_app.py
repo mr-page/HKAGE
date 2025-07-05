@@ -17,7 +17,7 @@ def process_audio(audio_path):
 
         # 2. Send to server
         response = requests.post(
-            "https://instantly-beloved-griffon.ngrok-free.app/transcribe",
+            "http://127.0.0.1:8000/transcribe",
             json={"audio_data": audio_base64, "format": "mp3"},
             timeout=30
         )
@@ -31,7 +31,7 @@ def process_audio(audio_path):
 # confirmation progress
 def confirmation(result_text):
     if result_text!='Processing error: Invalid file: None':
-        url = "https://instantly-beloved-griffon.ngrok-free.app/confirmation"
+        url = "http://127.0.0.1:8000/confirmation"
         data = {"text": result_text}
         headers = {"Content-Type": "application/json"}
 
@@ -46,8 +46,8 @@ def confirmation(result_text):
 
 
 
-with gr.Blocks(title="粵語轉換器", theme=gr.themes.Soft()) as app:
-    gr.Markdown("""<h1 style='text-align: center'>🎤 粵語語音轉文字系統</h1>""")
+with gr.Blocks(title="VoiceCare Sentinel", theme=gr.themes.Soft()) as app:
+    gr.Markdown("""<h1 style='text-align: center'>VoiceCare Sentinel</h1>""")
 
     with gr.Row():
         with gr.Column():
@@ -62,7 +62,7 @@ with gr.Blocks(title="粵語轉換器", theme=gr.themes.Soft()) as app:
         with gr.Column():
             output_text = gr.Textbox(
                 label="轉換結果",
-                placeholder="繁體中文文本將顯示在此...",
+                placeholder="中文文本將顯示在此...",
                 lines=5
             )
             confirmation_btn= gr.Button('確定',variant='primary')
@@ -79,5 +79,5 @@ with gr.Blocks(title="粵語轉換器", theme=gr.themes.Soft()) as app:
     )
 
 if __name__ == "__main__":
-    app.launch(server_port=7860,share=True)
+    app.launch(server_port=7860)
 

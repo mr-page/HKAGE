@@ -68,9 +68,9 @@ def read_and_write(import_text):
     time_list = generate_time_intervals()
     # Example usage
     data = [
-        ['Name','','',str(datetime.now().strftime('%Y/%m'))],
-        ['Birth date',''],
-        ['Number',str(number)],
+        ['Name','Mary Chan','',str(datetime.now().strftime('%Y/%m'))],
+        ['Birth date','1938/3/8'],
+        ['Number',str(number)+'號床'],
         ['','Day']+day,
         ['Month',''],
         *time_list

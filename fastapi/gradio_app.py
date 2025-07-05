@@ -3,20 +3,21 @@ import requests
 import base64
 from io import BytesIO
 import soundfile as sf
-
+import json
 
 def process_audio(audio_path):
     """Process audio and send to server"""
     try:
         # 1. Read audio and convert to MP3 in memory
         data, samplerate = sf.read(audio_path)
+        print(audio_path)
         with BytesIO() as mp3_buffer:
             sf.write(mp3_buffer, data, samplerate, format='mp3')
             audio_base64 = base64.b64encode(mp3_buffer.getvalue()).decode('utf-8')
 
         # 2. Send to server
         response = requests.post(
-            "http://localhost:8000/transcribe",
+            "http://127.0.0.1:8000/transcribe",
             json={"audio_data": audio_base64, "format": "mp3"},
             timeout=30
         )
@@ -27,8 +28,26 @@ def process_audio(audio_path):
         return f"Processing error: {str(e)}"
 
 
-with gr.Blocks(title="粵語轉換器", theme=gr.themes.Soft()) as app:
-    gr.Markdown("""<h1 style='text-align: center'>🎤 粵語語音轉文字系統</h1>""")
+# confirmation progress
+def confirmation(result_text):
+    if result_text!='Processing error: Invalid file: None':
+        url = "http://127.0.0.1:8000/confirmation"
+        data = {"text": result_text}
+        headers = {"Content-Type": "application/json"}
+
+        # Send POST request
+        response = requests.post(
+            url,
+            data=json.dumps(data),
+            headers=headers,
+            timeout=10  # 10 second timeout
+        )
+    return
+
+
+
+with gr.Blocks(title="VoiceCare Sentinel", theme=gr.themes.Soft()) as app:
+    gr.Markdown("""<h1 style='text-align: center'>VoiceCare Sentinel</h1>""")
 
     with gr.Row():
         with gr.Column():
@@ -43,16 +62,22 @@ with gr.Blocks(title="粵語轉換器", theme=gr.themes.Soft()) as app:
         with gr.Column():
             output_text = gr.Textbox(
                 label="轉換結果",
-                placeholder="繁體中文文本將顯示在此...",
+                placeholder="中文文本將顯示在此...",
                 lines=5
             )
+            confirmation_btn= gr.Button('確定',variant='primary')
+
 
     submit_btn.click(
         fn=process_audio,
         inputs=audio_input,
         outputs=output_text
     )
+    confirmation_btn.click(
+        fn=confirmation,
+        inputs=output_text
+    )
 
 if __name__ == "__main__":
-    app.launch(server_port=7860,share=True)
+    app.launch(server_port=7860)
 

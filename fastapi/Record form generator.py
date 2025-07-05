@@ -2,16 +2,17 @@ from openpyxl import Workbook, load_workbook
 from datetime import datetime, timedelta
 import re
 
+
 def read_and_write(import_text):
     number = re.findall(r'\d+', import_text)[0]
+
     # WRITE to Excel
     def write_to_excel(filename, data):
         """Write data to Excel file"""
         wb = Workbook()
         ws = wb.active
-        
-        # Add headers
 
+        # Add headers
 
         # Add data rows
         for row in data:
@@ -19,7 +20,6 @@ def read_and_write(import_text):
 
         wb.save(filename)
         print(f"Data written to {filename}")
-
 
     # READ from Excel
     def read_from_excel(filename):
@@ -48,7 +48,6 @@ def read_and_write(import_text):
                         }
         return None
 
-
     day = []
     for i in range(31):
         day.append(str(i + 1))
@@ -68,19 +67,19 @@ def read_and_write(import_text):
     time_list = generate_time_intervals()
     # Example usage
     data = [
-        ['Name',''],
-        ['Birth date',''],
-        ['Number',str(number)],
-        ['','Day']+day,
-        ['Month',''],
+        ['Name', 'Mary Chan', '', str(datetime.now().strftime('%Y/%m'))],
+        ['Birth date', '1938/3/8'],
+        ['Number', str(number) + '號床'],
+        ['', 'Day'] + day,
+        ['Month', ''],
         *time_list
     ]
 
+    write_to_excel("record document/" + number + ".xlsx", data)
+    print("Data from file:", read_from_excel("record document/" + number + ".xlsx"))
 
 
-    write_to_excel("record document/"+number+".xlsx", data)
-    print("Data from file:", read_from_excel("record document/"+number+".xlsx"))
 for i in range(50):
-    read_and_write(str(i+1))
+    read_and_write(str(i + 1))
 
 

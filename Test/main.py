@@ -121,7 +121,7 @@ async def transcribe_cantonese(request: TranscriptionRequest):
     try:
         # 1. Call Pollinations.ai API directly
         response = requests.post(
-            "https://text.pollinations.ai/openai",
+            "https://text.pollinations.ai/openai/?token=SyGHlVLCi_3D4uVG",
             json={
                 "messages": [{
                     "role": "user",
@@ -168,7 +168,10 @@ async def confirmation(data: TextData):
     def contains_number(s):
         return bool(re.search(r'\d', s))
 
-    if contains_number(data):
+    def contains_confirm(s):
+        return  '已派藥' in s
+
+    if contains_number(data) and contains_confirm(data):
         # Modified version of your functions with integrated logging
         def read_and_write(import_text):
             logger = ExcelDataLogger()
@@ -204,12 +207,15 @@ async def confirmation(data: TextData):
                     # Find the cell
                     def Find_the_cell():
                         cell_find_start = datetime.now()
-                        global row, col
+                        current_day = current_time.strftime("%d")  # "03"
+                        current_day_no_zero = str(int(current_day))  # "3"
 
                         try:
+                            col = None
                             # Search for day in header row
                             for i in ws['C4:AG4'][0]:
-                                if i.value == current_time.strftime("%d"):
+                                cell_value = str(i.value).strip() if i.value else ""
+                                if cell_value in [current_day, current_day_no_zero]:
                                     col = i.column
                                     logger.log_operation(
                                         operation="column_found",
@@ -223,7 +229,7 @@ async def confirmation(data: TextData):
 
                             # Search for time in first column
                             for i in ws['A6:A101']:
-                                if i[0].value > current_time.strftime("%H:%M"):
+                                if i[0].value <= current_time.strftime("%H:%M"):
                                     row = i[0].row
                                     logger.log_operation(
                                         operation="row_found",
@@ -234,6 +240,7 @@ async def confirmation(data: TextData):
                                             'range_searched': 'A6:A101'
                                         }
                                     )
+                                else:
                                     break
 
                             logger.log_operation(
@@ -324,5 +331,4 @@ if __name__ == "__main__":
     import uvicorn
 
     uvicorn.run(app, host="0.0.0.0", port=8000)
-
 

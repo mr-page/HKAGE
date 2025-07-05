@@ -1,64 +1,84 @@
-from openpyxl import Workbook, load_workbook
-from datetime import datetime, timedelta
-import re
+import gradio as gr
+import requests
+import base64
+from io import BytesIO
+import soundfile as sf
+import json
+from pyngrok import ngrok,conf
 
-def generate_time_intervals():
-    start_time = datetime.strptime("00:00", "%H:%M")
-    end_time = datetime.strptime("23:59", "%H:%M")
-    delta = timedelta(minutes=15)
+def process_audio(audio_path):
+    """Process audio and send to server"""
+    try:
+        # 1. Read audio and convert to MP3 in memory
+        data, samplerate = sf.read(audio_path)
+        print(audio_path)
+        with BytesIO() as mp3_buffer:
+            sf.write(mp3_buffer, data, samplerate, format='mp3')
+            audio_base64 = base64.b64encode(mp3_buffer.getvalue()).decode('utf-8')
 
-    times = []
-    current = start_time
-    while current <= end_time:
-        times.append([current.strftime("%H:%M")])
-        current += delta
-    return times
-time_list = generate_time_intervals()
+        # 2. Send to server
+        response = requests.post(
+            "https://instantly-beloved-griffon.ngrok-free.app/transcribe",
+            json={"audio_data": audio_base64, "format": "mp3"},
+            timeout=30
+        )
 
+        return response.json()['text'] if response.status_code == 200 else f"Error: {response.text}"
 
-day = []
-for i in range(31):
-    day.append(str(i+1))
-month = []
-
-
-# print(day)
-# print(time_list)
-# print(type(time_list[1][0]))
-wb = load_workbook("record document/"+'13'+".xlsx")
-ws = wb.active
-for row in ws.iter_rows(min_row=4,min_col=3):
-   for cell in row:
-       # print(cell.column)
-        continue
-for row in ws.iter_rows(min_row=6,max_col=1):
-    for cell in row:
-        # print(cell.row)
-        continue
+    except Exception as e:
+        return f"Processing error: {str(e)}"
 
 
+# confirmation progress
+def confirmation(result_text):
+    if result_text!='Processing error: Invalid file: None':
+        url = "https://instantly-beloved-griffon.ngrok-free.app/confirmation"
+        data = {"text": result_text}
+        headers = {"Content-Type": "application/json"}
+
+        # Send POST request
+        response = requests.post(
+            url,
+            data=json.dumps(data),
+            headers=headers,
+            timeout=10  # 10 second timeout
+        )
+    return
 
 
 
-current_time = datetime.now()
-for i in ws['C4:AG4'][0]:
-    if i.value == current_time.strftime("%d"):
-        col = i.column
-        print(col)
-        print(type(col))
-for i in ws['A6:A101']:
-    if i[0].value > current_time.strftime("%H:%M"):
-        row = i[0].row
-        print(row)
-        break
+with gr.Blocks(title="VoiceCare Sentinel", theme=gr.themes.Soft()) as app:
+    gr.Markdown("""<h1 style='text-align: center'>VoiceCare Sentinel</h1>""")
+
+    with gr.Row():
+        with gr.Column():
+            audio_input = gr.Audio(
+                sources=["microphone"],
+                type="filepath",
+                label="請講廣東話",
+                waveform_options={"waveform_progress_color": "#FF8800"}
+            )
+            submit_btn = gr.Button("開始轉換", variant="primary")
+
+        with gr.Column():
+            output_text = gr.Textbox(
+                label="轉換結果",
+                placeholder="中文文本將顯示在此...",
+                lines=5
+            )
+            confirmation_btn= gr.Button('確定',variant='primary')
 
 
-# for row in ws.values:
-#    for value in row:
-#      print(value)
+    submit_btn.click(
+        fn=process_audio,
+        inputs=audio_input,
+        outputs=output_text
+    )
+    confirmation_btn.click(
+        fn=confirmation,
+        inputs=output_text
+    )
 
-# if '12:00' >current_time.strftime("%H:%M"):
-#     print(True)
-# for i in ws['A6:A101']:
-#     print(i[0].value)
-    # print(i.value > current_time.strftime("%H:%M"))
+if __name__ == "__main__":
+    app.launch(server_port=7860)
+
